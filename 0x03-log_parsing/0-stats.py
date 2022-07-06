@@ -25,6 +25,9 @@ try:
                 count = 0
             count = count+1
 except KeyboardInterrupt:
+    pass
+
+finally:
     print('File size: {}'.format(filesize))
     for key, value in possible_stat_code.items():
         if value:
