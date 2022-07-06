@@ -8,7 +8,7 @@ possible_stat_code = {"200": 0, "301": 0, "400": 0,
 try:
     for line in sys.stdin:
         elements = line.split(" ")
-        if (len(elements) > 6):
+        if (len(elements) > 4):
 
             stat_code = elements[-2]
             if (stat_code in possible_stat_code.keys()):
@@ -24,8 +24,8 @@ try:
                         print('{}: {}'.format(key, value))
                 count = 0
             count = count+1
-except KeyboardInterrupt:
-    pass
+except KeyboardInterrupt as err:
+    raise
 
 finally:
     print('File size: {}'.format(filesize))
