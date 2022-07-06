@@ -19,7 +19,7 @@ try:
             filesize = filesize+(int(elements[-1]))
             if (count == 10):
                 print('File size: {}'.format(filesize))
-                for key, value in possible_stat_code.items():
+                for key, value in sorted(possible_stat_code.items()):
                     if value:
                         print('{}: {}'.format(key, value))
                 count = 0
@@ -29,6 +29,6 @@ except KeyboardInterrupt:
 
 finally:
     print('File size: {}'.format(filesize))
-    for key, value in possible_stat_code.items():
+    for key, value in sorted(possible_stat_code.items()):
         if value:
             print('{}: {}'.format(key, value))
