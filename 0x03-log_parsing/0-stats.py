@@ -8,7 +8,7 @@ possible_stat_code = {"200": 0, "301": 0, "400": 0,
 try:
     for line in sys.stdin:
         elements = line.split(" ")
-        if (len(elements) == 9):
+        if (len(elements) > 6):
 
             stat_code = elements[-2]
             if (stat_code in possible_stat_code.keys()):
