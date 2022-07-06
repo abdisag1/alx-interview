@@ -26,7 +26,7 @@ try:
                 count = 0
             count = count+1
 except Exception as err: 
-    pass
+    raise
 
 finally:
     print('File size: {}'.format(filesize))
