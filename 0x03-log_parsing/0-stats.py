@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from logging import exception
 import sys
 count = 0
 filesize = 0
@@ -25,7 +24,7 @@ try:
                         print('{}: {}'.format(key, value))
                 count = 0
             count = count+1
-except Exception as err: 
+except KeyboardInterrupt as err:
     raise
 
 finally:
