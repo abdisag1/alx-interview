@@ -7,6 +7,9 @@ You can assume the matrix will have 2 dimensions and will not be empty.
 
 
 def rotate_2d_matrix(matrix):
+    """
+    reverses the  2d matrix rows and columns
+    """
     newmatrics = matrix
     for i in range(len(matrix)):
         for j in range(i):
@@ -17,11 +20,4 @@ def rotate_2d_matrix(matrix):
     # print(newmatrics)
     for i in matrix:
         i.reverse()
- print(matrix)
-if __name__ == "__main__":
-    matrix = [[1, 2, 3],
-              [4, 5, 6],
-              [7, 8, 9]]
-
-    rotate_2d_matrix(matrix)
-    print(matrix)
+        print(matrix)
