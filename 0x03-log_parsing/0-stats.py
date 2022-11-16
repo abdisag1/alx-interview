@@ -1,34 +1,36 @@
 #!/usr/bin/python3
+'''a script that reads stdin line by line and computes metrics'''
+
 import sys
-count = 0
-filesize = 0
-possible_stat_code = {"200": 0, "301": 0, "400": 0,
-                      "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
+
+cache = {'200': 0, '301': 0, '400': 0, '401': 0,
+         '403': 0, '404': 0, '405': 0, '500': 0}
+total_size = 0
+counter = 0
 
 try:
     for line in sys.stdin:
-        elements = line.split(" ")
-        if (len(elements) > 4):
+        line_list = line.split(" ")
+        if len(line_list) > 4:
+            code = line_list[-2]
+            size = int(line_list[-1])
+            if code in cache.keys():
+                cache[code] += 1
+            total_size += size
+            counter += 1
 
-            stat_code = elements[-2]
-            if (stat_code in possible_stat_code.keys()):
-                possible_stat_code[stat_code] += 1
+        if counter == 10:
+            counter = 0
+            print('File size: {}'.format(total_size))
+            for key, value in sorted(cache.items()):
+                if value != 0:
+                    print('{}: {}'.format(key, value))
 
-            # print(elements[-2])
-            # print(elements)
-            filesize = filesize+(int(elements[-1]))
-            if (count == 10):
-                print('File size: {}'.format(filesize))
-                for key, value in sorted(possible_stat_code.items()):
-                    if value:
-                        print('{}: {}'.format(key, value))
-                count = 0
-            count = count+1
-except KeyboardInterrupt as err:
-    raise
+except Exception as err:
+    pass
 
 finally:
-    print('File size: {}'.format(filesize))
-    for key, value in sorted(possible_stat_code.items()):
-        if value:
+    print('File size: {}'.format(total_size))
+    for key, value in sorted(cache.items()):
+        if value != 0:
             print('{}: {}'.format(key, value))
